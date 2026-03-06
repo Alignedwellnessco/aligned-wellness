@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aligned Wellness | Premium Health for Less</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #c8dbc9;
+    --sage-pale: #eef4ee;
+    --cream: #faf7f2;
+    --warm: #e8ddd0;
+    --earth: #8b7355;
+    --dark: #1e2420;
+    --text: #3d4a3e;
+    --muted: #7a8c7b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; background: rgba(250,247,242,0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(122,158,126,0.15); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--dark); letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--sage); font-style: italic; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-cta { background: var(--dark); color: var(--cream); border: none; padding: 10px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .nav-cta:hover { background: var(--sage); }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 88px; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 48px 80px 80px; position: relative; z-index: 2; }
+  .hero-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--sage-pale); border: 1px solid var(--sage-light); color: var(--sage); font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; width: fit-content; margin-bottom: 28px; animation: fadeUp 0.7s ease 0.1s both; }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--sage); border-radius: 50%; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(46px, 5.5vw, 74px); font-weight: 600; line-height: 1.08; color: var(--dark); letter-spacing: -0.01em; animation: fadeUp 0.7s ease 0.2s both; }
+  h1 em { font-style: italic; color: var(--sage); }
+  .hero-sub { margin-top: 24px; font-size: 17px; line-height: 1.7; color: var(--muted); max-width: 420px; animation: fadeUp 0.7s ease 0.35s both; font-weight: 300; }
+  .hero-actions { margin-top: 40px; display: flex; gap: 14px; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.45s both; }
+  .btn-primary { background: var(--dark); color: var(--cream); border: none; padding: 16px 32px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 20px rgba(30,36,32,0.2); }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(122,158,126,0.35); }
+  .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--warm); padding: 16px 28px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--sage); color: var(--sage); }
+  .hero-stats { margin-top: 56px; display: flex; gap: 40px; animation: fadeUp 0.7s ease 0.55s both; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 600; color: var(--dark); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--muted); font-weight: 500; margin-top: 4px; letter-spacing: 0.04em; text-transform: uppercase; }
+
+  /* HERO RIGHT */
+  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; padding: 80px 80px 80px 40px; animation: fadeUp 0.8s ease 0.3s both; }
+  .hero-bg-circle { position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .hero-card { position: relative; z-index: 2; background: #fff; border-radius: 24px; box-shadow: 0 24px 80px rgba(30,36,32,0.12), 0 0 0 1px rgba(122,158,126,0.1); overflow: hidden; width: 100%; max-width: 360px; }
+  .hero-card-img { height: 200px; background: linear-gradient(135deg, var(--sage) 0%, #5a8a5e 50%, var(--earth) 100%); display: flex; align-items: center; justify-content: center; font-size: 64px; }
+  .hero-card-body { padding: 24px; }
+  .membership-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--sage-pale); color: var(--sage); font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 12px; border-radius: 100px; margin-bottom: 14px; }
+  .hero-card-body h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--dark); font-weight: 600; line-height: 1.2; }
+  .hero-card-body p { font-size: 13px; color: var(--muted); margin-top: 8px; line-height: 1.6; font-weight: 300; }
+  .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: 18px; }
+  .price-big { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600; color: var(--dark); }
+  .price-period { font-size: 14px; color: var(--muted); font-weight: 300; }
+  .price-old { font-size: 13px; color: var(--muted); text-decoration: line-through; }
+  .card-join-btn { margin-top: 16px; width: 100%; background: linear-gradient(135deg, var(--sage), #5a8a5e); color: #fff; border: none; padding: 14px; border-radius: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
+  .card-join-btn:hover { opacity: 0.88; }
+
+  /* FLOAT BADGES */
+  .float-badge { position: absolute; background: #fff; border-radius: 16px; padding: 12px 16px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 600; color: var(--dark); z-index: 3; }
+  .float-badge.b1 { top: 18%; right: 6%; animation: float 4s ease-in-out infinite; }
+  .float-badge.b2 { bottom: 22%; left: 4%; animation: float 4s ease-in-out 1.5s infinite; }
+  .float-badge .badge-icon { font-size: 22px; }
+  .float-badge .badge-sub { font-size: 11px; color: var(--muted); font-weight: 400; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+  /* SECTIONS */
+  section { padding: 100px 80px; }
+  .section-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); margin-bottom: 16px; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 4vw, 52px); font-weight: 600; line-height: 1.1; color: var(--dark); }
+  .section-title em { font-style: italic; color: var(--sage); }
+
+  /* HOW IT WORKS */
+  .how-it-works { background: var(--dark); position: relative; overflow: hidden; }
+  .how-it-works::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(122,158,126,0.15) 0%, transparent 60%); }
+  .how-it-works .section-tag { color: var(--sage-light); }
+  .how-it-works .section-title { color: var(--cream); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+  .step-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 36px 28px; transition: background 0.3s; }
+  .step-card:hover { background: rgba(255,255,255,0.07); }
+  .step-num { font-family: 'Cormorant Garamond', serif; font-size: 64px; font-weight: 600; color: rgba(122,158,126,0.3); line-height: 1; margin-bottom: 20px; }
+  .step-card h3 { font-size: 18px; font-weight: 600; color: var(--cream); margin-bottom: 10px; }
+  .step-card p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+
+  /* PRODUCTS */
+  .products { background: var(--cream); }
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 56px; }
+  .product-card { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid rgba(122,158,126,0.1); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; }
+  .product-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(30,36,32,0.1); }
+  .product-emoji { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 48px; }
+  .p1 { background: linear-gradient(135deg,#e8f4e8,#d4ebd4); } .p2 { background: linear-gradient(135deg,#fef3e2,#fde8c0); } .p3 { background: linear-gradient(135deg,#e8eef8,#d4e0f4); } .p4 { background: linear-gradient(135deg,#f8e8f0,#f0d4e4); }
+  .product-info { padding: 18px; }
+  .product-info h4 { font-size: 15px; font-weight: 600; color: var(--dark); }
+  .product-info p { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.5; font-weight: 300; }
+  .product-price { display: flex; gap: 8px; align-items: center; margin-top: 12px; }
+  .p-member { font-size: 15px; font-weight: 700; color: var(--sage); }
+  .p-retail { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+
+  /* TESTIMONIALS */
+  .social-proof { background: var(--sage-pale); }
+  .testimonials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .testi-card { background: #fff; border-radius: 20px; padding: 28px; border: 1px solid rgba(122,158,126,0.15); }
+  .stars { color: #f0a500; font-size: 14px; margin-bottom: 12px; }
+  .testi-text { font-size: 14px; line-height: 1.7; color: var(--text); font-weight: 300; font-style: italic; }
+  .testi-author { margin-top: 16px; display: flex; align-items: center; gap: 10px; }
+  .testi-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; }
+  .testi-name { font-size: 13px; font-weight: 600; color: var(--dark); }
+  .testi-platform { font-size: 11px; color: var(--muted); }
+
+  /* PLATFORMS */
+  .platforms { background: #fff; }
+  .platforms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .platform-card { border-radius: 20px; padding: 36px; transition: transform 0.3s; }
+  .platform-card:hover { transform: translateY(-4px); }
+  .tiktok-card { background: linear-gradient(135deg,#010101 0%,#1a1a2e 100%); }
+  .facebook-card { background: linear-gradient(135deg,#1877f2 0%,#0d5abf 100%); }
+  .instagram-card { background: linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+  .platform-icon { font-size: 40px; margin-bottom: 16px; }
+  .platform-card h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .platform-card p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; font-weight: 300; }
+  .platform-tips { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+  .platform-tip { font-size: 12px; color: rgba(255,255,255,0.8); padding-left: 14px; position: relative; line-height: 1.5; }
+  .platform-tip::before { content: '->'; position: absolute; left: 0; color: rgba(255,255,255,0.45); }
+
+  /* CTA */
+  .cta-section { background: var(--dark); text-align: center; padding: 100px 80px; }
+  .cta-section .section-title { color: var(--cream); }
+  .cta-section p { color: rgba(255,255,255,0.55); font-size: 16px; margin-top: 16px; font-weight: 300; line-height: 1.7; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .cta-actions { display: flex; gap: 14px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
+  .btn-light { background: var(--cream); color: var(--dark); border: none; padding: 16px 36px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.25s; }
+  .btn-light:hover { background: var(--sage-light); }
+  .btn-outline-light { background: transparent; color: rgba(255,255,255,0.7); border: 1.5px solid rgba(255,255,255,0.2); padding: 16px 28px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+  .btn-outline-light:hover { border-color: var(--sage-light); color: var(--sage-light); }
+
+  /* FOOTER */
+  footer { background: var(--cream); border-top: 1px solid var(--warm); padding: 40px 80px; display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--dark); }
+  .footer-logo span { color: var(--sage); font-style: italic; }
+  footer p { font-size: 12px; color: var(--muted); font-weight: 300; line-height: 1.7; max-width: 380px; margin-top: 8px; }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--sage); }
+
+  /* CHAT WIDGET */
+  #chat-widget { position: fixed; bottom: 28px; right: 28px; z-index: 500; display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+  #chat-panel { width: 370px; height: 560px; background: #fff; border-radius: 20px; box-shadow: 0 24px 80px rgba(0,0,0,0.2); overflow: hidden; display: none; flex-direction: column; border: 1px solid rgba(122,158,126,0.15); }
+  #chat-panel.open { display: flex; animation: panelUp 0.3s ease; }
+  @keyframes panelUp { from{opacity:0;transform:translateY(20px) scale(0.95)} to{opacity:1;transform:translateY(0) scale(1)} }
+  .chat-header { background: linear-gradient(135deg, var(--sage) 0%, #5a8a5e 100%); padding: 14px 16px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .chat-av { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.25); border: 2px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #fff; position: relative; }
+  .chat-av::after { content:''; position:absolute; bottom:1px; right:1px; width:10px; height:10px; border-radius:50%; background:#44d757; border:2px solid #5a8a5e; }
+  .chat-hname { color: #fff; font-weight: 700; font-size: 14px; }
+  .chat-hstatus { color: rgba(255,255,255,0.8); font-size: 11px; }
+  .chat-close { background: none; border: none; color: rgba(255,255,255,0.8); font-size: 20px; cursor: pointer; margin-left: auto; line-height: 1; padding: 4px; }
+  .chat-close:hover { color: #fff; }
+  #chat-msgs { flex: 1; overflow-y: auto; padding: 14px 12px; background: #f0f2f5; display: flex; flex-direction: column; gap: 9px; }
+  #chat-msgs::-webkit-scrollbar { width: 3px; }
+  #chat-msgs::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+  .cmsg { display: flex; align-items: flex-end; gap: 7px; animation: msgIn 0.28s ease; }
+  .cmsg.user { flex-direction: row-reverse; }
+  @keyframes msgIn { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:translateY(0)} }
+  .cmsg-av { width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0; background: linear-gradient(135deg, var(--sage), #5a8a5e); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; color: #fff; }
+  .cmsg-bubble { max-width: 78%; padding: 9px 13px; border-radius: 17px; font-size: 13px; line-height: 1.55; font-family: 'DM Sans', sans-serif; }
+  .cmsg.bot .cmsg-bubble { background: #fff; color: var(--dark); border-bottom-left-radius: 3px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .cmsg.user .cmsg-bubble { background: linear-gradient(135deg, var(--sage), #5a8a5e); color: #fff; border-bottom-right-radius: 3px; }
+  .typing-wrap { display: flex; gap: 4px; padding: 11px 13px; background: #fff; border-radius: 17px; border-bottom-left-radius: 3px; width: fit-content; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: #bbb; animation: bounce 1.2s infinite; }
+  .dot:nth-child(2){animation-delay:0.2s} .dot:nth-child(3){animation-delay:0.4s}
+  @keyframes bounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+  .opener-chips { display: flex; flex-wrap: wrap; gap: 5px; padding: 2px 0; }
+  .opener-chip { padding: 5px 11px; border-radius: 20px; border: 1.5px solid #dde1e9; background: #fff; font-size: 11px; font-weight: 600; color: #555; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .opener-chip:hover { background: var(--sage-pale); border-color: var(--sage); color: var(--sage); }
+  .lead-form { display: flex; flex-direction: column; gap: 8px; }
+  .lead-form input { width: 100%; padding: 9px 13px; border-radius: 10px; border: 1.5px solid #dde1e9; font-size: 12px; font-family: 'DM Sans', sans-serif; color: var(--dark); background: #fff; outline: none; transition: border 0.2s; }
+  .lead-form input:focus { border-color: var(--sage); }
+  .interest-chips { display: flex; gap: 5px; flex-wrap: wrap; }
+  .interest-chip { padding: 5px 10px; border-radius: 20px; border: 1.5px solid #dde1e9; background: #fff; font-size: 11px; font-weight: 600; color: #666; cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif; }
+  .interest-chip.active { background: var(--sage-pale); border-color: var(--sage); color: var(--sage); }
+  .lead-submit { width: 100%; padding: 11px; border-radius: 11px; background: linear-gradient(135deg, var(--sage), #5a8a5e); color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; margin-top: 2px; }
+  .lead-submit:hover { opacity: 0.88; }
+  #chat-ibar { padding: 9px 12px; background: #fff; border-top: 1px solid #e4e6eb; display: none; align-items: center; gap: 9px; flex-shrink: 0; }
+  #chat-ibar input { flex: 1; background: #f0f2f5; border: none; border-radius: 22px; padding: 9px 15px; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--dark); outline: none; }
+  .chat-send { width: 32px; height: 32px; border-radius: 50%; background: var(--sage); border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: background 0.2s; }
+  .chat-send:hover { background: #5a8a5e; }
+
+  /* FAB */
+  #chat-fab-wrap { position: relative; width: 58px; height: 58px; }
+  .fab-pulse { position: absolute; inset: 0; border-radius: 50%; background: rgba(122,158,126,0.3); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{transform:scale(1);opacity:0.6} 50%{transform:scale(1.55);opacity:0} }
+  #chat-fab { width: 58px; height: 58px; border-radius: 50%; background: linear-gradient(135deg, var(--sage), #5a8a5e); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 28px rgba(122,158,126,0.45); font-size: 22px; transition: transform 0.2s; position: relative; z-index: 1; }
+  #chat-fab:hover { transform: scale(1.08); }
+  .fab-badge { position: absolute; top: -1px; right: -1px; width: 17px; height: 17px; border-radius: 50%; background: #e53935; border: 2px solid var(--cream); font-size: 9px; font-weight: 700; color: #fff; display: flex; align-items: center; justify-content: center; z-index: 2; }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 56px 24px 48px; }
+    .hero-right { display: none; }
+    section { padding: 64px 24px; }
+    .steps-grid, .products-grid, .testimonials, .platforms-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; }
+    #chat-panel { width: calc(100vw - 32px); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Aligned <span>Wellness</span></div>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#join">Join</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openChat()">Chat with Maya</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    
+    <h1>Wellness that<br/>doesn't cost<br/><em>a fortune</em></h1>
+    <p class="hero-sub">Premium supplements at near-wholesale pricing. $10/month membership. No required purchases. Just better health, for less.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openChat()">Talk to Maya — It's Free</button>
+      <button class="btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">$10</div><div class="stat-label">per month</div></div>
+      <div style="width:1px;background:var(--warm)"></div>
+      <div><div class="stat-num">75%</div><div class="stat-label">avg. savings</div></div>
+      <div style="width:1px;background:var(--warm)"></div>
+      <div><div class="stat-num">0</div><div class="stat-label">required buys</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-circle"></div>
+    <div class="float-badge b1"><span class="badge-icon">🌿</span><div><div>No Fillers</div><div class="badge-sub">Clean ingredients</div></div></div>
+    <div class="float-badge b2"><span class="badge-icon">⭐</span><div><div>Member Price</div><div class="badge-sub">Save up to 75%</div></div></div>
+    <div class="hero-card">
+      <div class="hero-card-img">🌱</div>
+      <div class="hero-card-body">
+        <div class="membership-badge">✦ Membership</div>
+        <h3>The Aligned Wellness Membership</h3>
+        <p>Unlock wholesale pricing on every product with one low monthly membership — no purchase required.</p>
+        <div class="price-row"><div class="price-big">$10</div><div><div class="price-period">/month</div><div class="price-old">Retail: $40–$80/product</div></div></div>
+        <button class="card-join-btn" onclick="openChat()">Get Started -> Chat with Maya</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how">
+  <div class="section-tag">Simple by design</div>
+  <div class="section-title">How it <em>works</em></div>
+  <div class="steps-grid">
+    <div class="step-card" onclick="openChat()" style="cursor:pointer;"><div class="step-num">01</div><h3>Chat with Maya</h3><p>Our AI guide asks the right questions to understand what you actually need — products, business, or both. No pressure, ever.</p><div style="margin-top:16px;font-size:13px;font-weight:700;color:var(--sage-light);">Start chatting -></div></div>
+    <div class="step-card" onclick="window.open('https://www.livegood.com/Beingness','_blank')" style="cursor:pointer;"><div class="step-num">02</div><h3>Join for $10/mo</h3><p>Your membership unlocks near-wholesale pricing on every supplement. No minimum purchase, no autoship required.</p><div style="margin-top:16px;font-size:13px;font-weight:700;color:var(--sage-light);">See products & join -></div></div>
+    <div class="step-card" onclick="window.open('https://www.livegoodtour.com/Beingness','_blank')" style="cursor:pointer;"><div class="step-num">03</div><h3>Optional: Earn</h3><p>Share your link, grow a team, and earn commissions. Income varies by effort — we never make guarantees, just real opportunity.</p><div style="margin-top:16px;font-size:13px;font-weight:700;color:var(--sage-light);">Watch the tour -></div></div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-tag">What we offer</div>
+  <div class="section-title">Products your body <em>loves</em></div>
+  <div class="products-grid">
+    <div class="product-card"><div class="product-emoji p1">💊</div><div class="product-info"><h4>Vitamins & Minerals</h4><p>Daily foundation for energy, immunity, and overall wellbeing.</p><div class="product-price"><span class="p-member">Member Pricing</span><span class="p-retail">vs retail</span></div></div></div>
+    <div class="product-card"><div class="product-emoji p2">🌿</div><div class="product-info"><h4>CBD Products</h4><p>Premium CBD for relaxation, sleep support, and daily calm.</p><div class="product-price"><span class="p-member">Member Pricing</span><span class="p-retail">vs retail</span></div></div></div>
+    <div class="product-card"><div class="product-emoji p3">💪</div><div class="product-info"><h4>Protein & Performance</h4><p>Clean protein and fitness supplements for active lifestyles.</p><div class="product-price"><span class="p-member">Member Pricing</span><span class="p-retail">vs retail</span></div></div></div>
+    <div class="product-card"><div class="product-emoji p4">🐾</div><div class="product-info"><h4>Pet Vitamins</h4><p>Dog & cat vitamins so your whole family can thrive.</p><div class="product-price"><span class="p-member">Member Pricing</span><span class="p-retail">vs retail</span></div></div></div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof">
+  <div class="section-tag">Real people, real stories</div>
+  <div class="section-title">What members <em>say</em></div>
+  <div class="testimonials">
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-text">"I was skeptical at first but $10 a month for this quality is genuinely a no-brainer. I canceled three other supplement subscriptions."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#43e97b,#38f9d7)">J</div><div><div class="testi-name">Jamie R.</div><div class="testi-platform">Member since 2023</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-text">"I started for the products and ended up building a little income on the side. Nothing crazy, but real money that covers my membership and more."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#f093fb,#f5576c)">M</div><div><div class="testi-name">Maria T.</div><div class="testi-platform">Affiliate + Member</div></div></div></div>
+    <div class="testi-card"><div class="stars">★★★★★</div><div class="testi-text">"My dog has been on the pet vitamins for 6 months and her coat has never looked better. The whole family is on LiveGood products now."</div><div class="testi-author"><div class="testi-avatar" style="background:linear-gradient(135deg,#4facfe,#00f2fe)">S</div><div><div class="testi-name">Sarah K.</div><div class="testi-platform">Member since 2024</div></div></div></div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms" id="platforms">
+  <div class="section-tag">Find us everywhere</div>
+  <div class="section-title">Follow Aligned Wellness <em>online</em></div>
+  <p style="margin-top:16px;color:var(--muted);font-size:15px;font-weight:300;line-height:1.7;max-width:520px">Each platform has a unique content strategy built around what actually works to grow your audience and your business.</p>
+  <div class="platforms-grid">
+    <div class="platform-card tiktok-card">
+      <div class="platform-icon">🎵</div><h3>TikTok</h3>
+      <a href="https://www.tiktok.com/@lynetheaffiliate" target="_blank" style="display:inline-block;margin-top:14px;padding:7px 16px;background:rgba(255,255,255,0.12);color:#fff;border-radius:100px;font-size:11px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:all 0.2s">Follow -></a>
+      </div>
+    </div></div>
+    </div>
+    <div class="platform-card facebook-card">
+      <div class="platform-icon">👥</div><h3>Facebook</h3>
+      <a href="https://www.facebook.com/share/1AbeM8fvrM/?mibextid=wwXIfr" target="_blank" style="display:inline-block;margin-top:14px;padding:7px 16px;background:rgba(255,255,255,0.12);color:#fff;border-radius:100px;font-size:11px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:all 0.2s">Follow -></a>
+      </div>
+    </div>
+    <div class="platform-card instagram-card">
+      <div class="platform-icon">📸</div><h3>Instagram</h3>
+      <a href="https://www.instagram.com/alignedwellnessco.space" target="_blank" style="display:inline-block;margin-top:14px;padding:7px 16px;background:rgba(255,255,255,0.12);color:#fff;border-radius:100px;font-size:11px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.25);transition:all 0.2s">Follow -></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="join">
+  <div class="section-tag" style="color:var(--sage-light)">Ready to begin?</div>
+  <div class="section-title">Start your wellness<br/><em>journey today</em></div>
+  <p>Chat with Maya right now — she'll answer every question, understand your goals, and get you set up in minutes. No pressure, no hype.</p>
+  <div class="cta-actions">
+    <button class="btn-light" onclick="openChat()">💬 Chat with Maya Now</button>
+    <button class="btn-outline-light" onclick="window.open('https://www.shoplivegood.com/Beingness','_blank')">Join for $10/month -></button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Aligned <span>Wellness</span></div>
+    <p>An independent LiveGood affiliate. Income results are not guaranteed and vary by individual effort. These statements have not been evaluated by the FDA. Products are not intended to diagnose, treat, cure, or prevent any disease.</p>
+  </div>
+  <div class="footer-links">
+    <a href="#how">How It Works</a>
+    <a href="#products">Products</a>
+    <a href="#platforms">Social</a>
+    <a href="#join">Join</a>
+    <a href="javascript:openChat()">Chat</a>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<div id="chat-widget">
+  <div id="chat-panel">
+    <div class="chat-header">
+      <div class="chat-av">M</div>
+      <div><div class="chat-hname">Maya • Aligned Wellness</div><div class="chat-hstatus">🟢 Active now</div></div>
+      <button class="chat-close" onclick="closeChat()">✕</button>
+    </div>
+    <div id="chat-msgs"></div>
+    <div id="chat-ibar">
+      <input type="text" id="chat-input" placeholder="Message Maya..." onkeydown="if(event.key==='Enter')sendMsg()" />
+      <button class="chat-send" onclick="sendMsg()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="chat-fab-wrap">
+    <div class="fab-pulse"></div>
+    <button id="chat-fab" onclick="toggleChat()">💬</button>
+    <div class="fab-badge">1</div>
+  </div>
+</div>
+
+<script>
+const AFFILIATE_PRODUCTS = "https://www.shoplivegood.com/Beingness";
+const AFFILIATE_INCOME = "https://www.livegoodtour.com/Beingness";
+let chatOpen=false, leadData=null, convHistory=[], chatStage='lead', selInterest='';
+
+const SYS = function(name) {
+  var base = [
+'You are Maya, a warm and knowledgeable guide for Aligned Wellness -- a LiveGood affiliate brand. You chat via a website widget.',
+'',
+'YOUR PERSONALITY:',
+'- Bold and motivating yet calm and grounded -- inspire action without pressure',
+'- Warm and genuine, like a knowledgeable friend, never a salesperson',
+'- 2-5 sentences max per reply. No bullet points. Speak naturally.',
+'- Always end with ONE forward-moving question',
+'- Max 1 emoji per message. Sound human, never robotic.',
+'- Every answer must naturally steer toward a conversion -- give the right link at the right moment',
+'- Never end a conversation without offering a clear next step',
+'',
+'LIVEGOOD MISSION:',
+'To help people get healthy and stay healthy -- without spending a fortune. Over 92% of Americans are deficient in one or more vitamins or minerals. Without proper nutrients, digestion suffers, organs underperform, and immunity breaks down. LiveGood was built to fix this: the highest quality supplements on the planet, sold direct -- no store markups, no middlemen -- at up to 75% less than competing brands.',
+'',
+'FOUNDING STORY:',
+'Founded by Ben Glinsky, 20+ years running successful supplement companies, paid out close to a billion dollars in commissions. He saw the industry moving away from overpriced products and teamed up with Dr. Ryan Goodkin and Lisa Goodkin to create LiveGood: the best products at the lowest prices, with a powerful income opportunity.',
+'',
+'LEADERSHIP TEAM:',
+'- Ben Glinsky, CEO -- 20+ years in nutritional supplement industry',
+'- Dr. Ryan Goodkin, Director of Product Development -- Doctorate in pharmacy, science and nutrition degree, natural health practitioner AND pharmacist. Designed every formula.',
+'- Lisa Goodkin, Director of Product Education -- Healthy lifestyle expert, fitness coach, nutritional educator',
+'- Nauder Khazan, Director of Field Development -- Business coach, helped thousands achieve more than they thought possible',
+'',
+'MEMBERSHIP:',
+'- Monthly: $9.95/month',
+'- Yearly: $99.95/year (saves 20% -- most popular)',
+'- Unlocks wholesale member pricing on ALL products',
+'- No required purchases, no autoship, cancel anytime',
+'- One product purchase per month covers the full membership cost',
+'- 90-day empty bottle money-back guarantee -- full refund, no questions asked',
+'- Ships 5-7 business days US, 2-3 weeks international',
+'',
+'FULL PRODUCT CATALOG:',
+'',
+'MULTIVITAMINS:',
+'- Bio-Active Complete Multi-Vitamin for Men -- 24 vitamins and minerals, immune and cardiovascular support, healthy aging',
+'- Bio-Active Complete Multi-Vitamin for Women with Iron -- 24 vitamins and minerals, immune and cardiovascular support, healthy aging',
+'- Organic D3-K2 2000 -- strong bones, healthy heart, highest quality vitamins D and K',
+'- Ultra Magnesium Complex -- muscle, nerve and energy support, 300+ enzyme reactions, sleep support, most bio-available form',
+'- Organic Children\'s Multi-Vitamin Gummies -- USDA Organic, all essential vitamins, brain development, immunity',
+'',
+'SUPERFOODS:',
+'- Organic Super Greens -- immune protection, energy and recovery, stress support, digestion, detox',
+'- Organic Super Reds -- cardiovascular health, circulation, sexual health, brain and cognitive function. Higher quality than Super Beets at half the price.',
+'- Himalayan Shilajit and Organic Sea Moss -- nervous system and brain, hormone and thyroid support, sexual health and fertility, heart health',
+'- Chlorophyll and Zeolite Detox -- natural detox, boosts energy, clearer skin, immune support',
+'- Organic Fiber -- digestion, heart health, blood sugar balance, gut health',
+'- Organic Coffee -- mood, focus and mental clarity, weight loss, functional mushrooms, tastes amazing',
+'',
+'PROTEIN AND PERFORMANCE:',
+'- Organic Complete Plant-Based Protein -- lean muscle, all 9 essential amino acids, 20g organic protein per serving',
+'- Whey Protein Isolate with Colostrum -- lean muscle, colostrum, digestive enzymes, chocolate flavor',
+'- Creatine + HMB -- muscle strength, faster recovery, endurance, weight management, cognitive function',
+'- Essential Aminos -- muscle strength and function, stamina and recovery, energy and focus',
+'- E3 Energy Endurance Electrolytes -- lasting energy, electrolytes for performance and recovery, berry flavor',
+'- LEAN Body Composition Formula -- weight management, boosts metabolism, decreases body fat',
+'- Hydration Amplifier -- rapid rehydration, zero sugar electrolytes, no artificial ingredients',
+'',
+'BRAIN AND FOCUS:',
+'- Methylene Blue Nootropic -- memory, brain cell protection, positive mood, focus and cognition',
+'- NAD+ -- cellular energy, brain and focus, healthy aging',
+'- Energy and Focus Patches -- healthy energy, positive mood, improved focus, greater endurance',
+'',
+'SLEEP:',
+'- CBN Sleep Gummies -- deep sleep, no grogginess, non-habit forming, wake refreshed',
+'- Sleep Patches -- deep restful sleep, improved quality, natural ingredients',
+'',
+'CBD LINE:',
+'- CBD Oil -- highest quality, faster absorption. 750mg or 1500mg. Natural or Peppermint. Other brands charge $80 for 500mg -- LiveGood offers 750mg for a fraction of that at member pricing.',
+'- CBD Gummies -- mood balance, recovery, gentle relaxation',
+'- CBD Pain Relief Cream -- soothes joints, relaxes muscles, 2000mg CBD',
+'- CBD Oil for Pets -- full spectrum, beef bacon flavor',
+'- CBN Sleep Gummies -- deep sleep focused formula',
+'',
+'HORMONE HEALTH:',
+'- Hormonal Balance for Women -- bloating, mood, menstrual comfort, food cravings, hormonal balance',
+'- Vitality Men\'s Hormone Support -- lean muscle, energy and stamina, testosterone, libido',
+'',
+'JOINT, BONE AND ORGAN HEALTH:',
+'- Factor4 Anti-Inflammatory -- fights inflammation, joint and organ health, immunity, circulation',
+'- Osteo Complete -- bone strength, cartilage support, enhanced mineral absorption',
+'- Collagen Peptides -- skin, hair and nails, bone, joint and muscle health, healthy aging',
+'- Liver Support -- liver protection, digestive support, reduces oxidative damage',
+'- Black Seed Oil -- immunity, anti-aging, anti-inflammatory, heart health',
+'- Probiotic Gut Support -- 60 billion CFU, 10 strains, 9 digestive enzymes, organic prebiotic, delayed release capsules',
+'',
+'SKIN CARE:',
+'- Ageless Renewal -- superfood for skin, antioxidants, natural collagen regeneration',
+'- BioCleanse Facial Cleanser -- gentle amino acid cleanse, ceramides, hydrating non-drying foam',
+'- Herbal Radiance Enriched Toner -- deep cleanse, pore refinement, gentle exfoliation, pH balance',
+'- Instant Youth -- look younger in minutes, reduces appearance of wrinkles',
+'- VitaGlow Hydrating Moisturizer -- deep hydration, soothes skin, botanical infusion',
+'- Whipped Tallow Balm -- deep hydration, nutrient-rich, pure and clean',
+'',
+'PET HEALTH:',
+'- Organic Pet Multi-Vitamin -- immunity, joint and mobility, healthy skin and coat, USDA Organic',
+'- CBD Oil for Pets -- full spectrum, beef bacon flavor',
+'',
+'OTHER:',
+'- Essential Oils -- therapeutic grade, third-party lab tested, 15ml bottles',
+'- Black Seed Oil -- immunity, anti-aging, heart health',
+'',
+'PRODUCT PACKS:',
+'- Daily Essentials -- Multi + D3-K2 + Magnesium',
+'- Foundational Five -- Multi + Magnesium + D3-K2 + Factor4 + Probiotic',
+'- Ultimate Wellness -- Multi + Essential Aminos + Super Greens + Super Reds + Factor4 + Magnesium + D3-K2',
+'- Maximum Wellness -- Multi + Magnesium + D3-K2 + Factor4 + Super Greens + Super Reds + Essential Aminos + Probiotic + Plant Protein',
+'- Maximum Energy -- Coffee + Essential Aminos + Super Reds + Super Greens',
+'- Maximum Build Muscle -- Collagen + Creatine HMB + Hydration + E3 + Super Reds + Essential Aminos + Whey Protein',
+'- Ultimate Weight Management -- Multi + Magnesium + D3-K2 + Factor4 + LEAN + Coffee + Hydration + Essential Aminos + Protein',
+'- AM/PM -- Energy and Focus Patches + Sleep Patches',
+'- Greens and Reds -- Super Greens + Super Reds',
+'- Detox -- Probiotic + Liver Support + Chlorophyll Zeolite Detox',
+'- Skin Care Pack -- Instant Youth + Ageless Renewal + VitaGlow + Herbal Radiance + BioCleanse',
+'- Sampler Value -- 24 best-selling products at one low price',
+'- International -- Multi + D3-K2 + Magnesium + Super Greens + Super Reds + Factor4, free shipping',
+'',
+'GIFT CERTIFICATES: $50, $100, $250, $500',
+'',
+'BUSINESS OPPORTUNITY AND COMPENSATION PLAN:',
+'LiveGood has the most powerful powerline-driven marketing system in the industry:',
+'',
+'1. RESERVE FREE POSITION -- Anyone can reserve a free spot in the powerline at no cost and no commitment at https://www.livegoodtour.com/Beingness. They watch a 5-minute video presentation and enter their name and email.',
+'',
+'2. LOCK IN BY THURSDAY -- Every Thursday night is the cutoff. Becoming a LiveGood member ($9.95/month plus one-time $40 affiliate signup fee) locks in their position and moves them ABOVE everyone who waits. Late joiners go below.',
+'',
+'3. THE 2x14 FORCED MATRIX -- Members are placed in a fast-filling 2-by-14 forced matrix. The matrix fills automatically through spillover. You can earn over $2,000 per month in matrix commissions WITHOUT personally enrolling a single person.',
+'',
+'4. FAST START COMMISSIONS -- Paid every Thursday on new member enrollments personally referred',
+'',
+'5. RETAIL COMMISSIONS -- Earn 50% of the difference between member price and retail price when retail customers order',
+'',
+'6. MATCHING BONUSES -- Enroll just ONE person and double your earning potential. Earn a percentage of your personally enrolled affiliates\' matrix commissions.',
+'',
+'7. INFLUENCER BONUSES -- Additional bonuses on high retail volume',
+'',
+'8. DIAMOND POOL -- Diamond rank shares 2% of total company sales monthly',
+'',
+'9. CROWN DIAMOND POOL -- Crown Diamond shares 0.5% of total company sales monthly',
+'',
+'10. RANKS: Bronze (2 enrolled members), Silver, Gold, Platinum, Diamond, Crown Diamond',
+'',
+'WHY LIVEGOOD IS DIFFERENT:',
+'- Products priced 50-75% LESS than competitors -- they sell themselves',
+'- Compare Super Reds vs Super Beets: LiveGood is higher quality, more antioxidants, organic, at half the price',
+'- Compare CBD Oil: competitors charge $80 for 500mg, LiveGood offers 750mg (50% stronger) at member pricing',
+'- Earn $2,000+ per month in the matrix without enrolling anyone -- unheard of in the industry',
+'- Millions joining in next 24 months -- earlier position = higher in matrix = more spillover income',
+'',
+'SPECIAL LINKS TO SHARE:',
+'- Free Health Assessment: https://www.MyFreeHealthReport.com/Beingness -- Dr. Ryan Goodkin\'s personalized health questionnaire, free report with supplement recommendations, tracked to you for commissions',
+'- Free Detox Bottle: https://www.MyFreeDetox.com/Beingness -- free Chlorophyll and Zeolite Detox with a product order',
+'- Weight Management Clinic: https://www.LiveGoodClinic.com/Beingness -- prescription weight management, members only',
+'- Super Greens page: https://www.LiveGoodSuperGreens.com/Beingness',
+'- Super Reds page: https://www.LiveGoodSuperReds.com/Beingness',
+'',
+'',
+'',
+'HOW THE MATRIX AND MATCHING BONUSES ACTUALLY WORK (explain this simply when asked):',
+'',
+'TWO TREES:',
+'Every affiliate has two genealogy trees:',
+'1. ENROLLER TREE -- everyone you personally enroll, and everyone they enroll. No limit to how many on each level. Used to determine: your rank, your fast start bonuses, and your matching bonuses.',
+'2. MATRIX TREE -- includes your enroller tree PLUS anyone placed under you by spillover from people above you. In the matrix, everyone only has 2 frontline positions.',
+'',
+'HOW THE MATRIX FILLS:',
+'LiveGood fills all LEFT positions on a level first, then all RIGHT positions -- unlike traditional left-to-right filling. This means spillover is distributed to help the maximum number of people win. You earn 2.5% of everyone\'s monthly membership fee in your matrix, 12 to 15 levels deep depending on rank.',
+'',
+'THE POWER OF MATCHING BONUSES -- THE BIGGEST PART OF THE PLAN:',
+'You match 50% of the matrix check of everyone you personally enroll, regardless of where they fall in the matrix. Example: if someone you enrolled earns $1,000/month in their matrix, you get a $500 matching bonus on that one person alone -- ON TOP of your own matrix commissions. If you enroll 10 people each earning $400/month in their matrix, that is $200 match on each = $2,000/month in matching bonuses just from those 10 people.',
+'',
+'As you advance in rank, you match even more generations deep in your enroller tree. And here is the incredible part -- you can get paid on the SAME PERSON multiple times. Example: one person on your 14th matrix level -- you get paid on them in YOUR matrix, PLUS you match their matrix, PLUS you match the matrix of everyone above them who also has them. That means you can literally get paid on one person 11 or more times through the combination of matrix commissions and matching bonuses.',
+'',
+'THE SIMPLE STRATEGY: Just enroll people. The more you enroll, the more duplication happens, the more matching bonuses you earn, and the more money you make. You never know who the next Diamond in your organization will be -- just keep sharing.',
+'',
+'COMPLIANCE -- NEVER BREAK:',
+'- No medical claims -- never say products treat, cure, diagnose or prevent any disease',
+'- No income guarantees -- income varies by effort, results are not guaranteed',
+'- Pyramid scheme objection: LiveGood sells real products people actually want at prices better than retail. Income comes from product sales and memberships, not just recruiting. It is not a pyramid scheme.',
+'- Income questions: "The matrix means you can benefit even from spillover -- but income always depends on your individual effort and activity."',
+'',
+'CONVERSION STRATEGY:',
+'- Health or product interest -> https://www.livegood.com/Beingness (member and retail pricing, join as member or affiliate)',
+'- Income or business interest -> https://www.livegoodtour.com/Beingness (5-minute video, reserve free position)',
+'- Hesitant or wants to learn more first -> https://www.MyFreeHealthReport.com/Beingness (free personalized health report, zero risk, tracked to you)',
+'- Free offer seekers -> https://www.MyFreeDetox.com/Beingness',
+'- Always give a warm confident next step like a trusted friend',
+'- The free health report is your secret weapon for hesitant leads -- value with zero commitment',
+'- Never leave someone without a direction'
+].join('\n');
+  if (name) { base = base + '\nThe person\'s name is ' + name + '.'; }
+  return base + '\n\nAlways end with ONE forward-moving question.';
+};
+
+function openChat(){document.getElementById('chat-panel').classList.add('open');chatOpen=true;document.querySelector('.fab-badge').style.display='none';if(chatStage==='lead'&&document.getElementById('chat-msgs').children.length===0)showLeadForm();}
+function closeChat(){document.getElementById('chat-panel').classList.remove('open');chatOpen=false;}
+function toggleChat(){chatOpen?closeChat():openChat();}
+
+function addMsg(text,role){
+  const w=document.getElementById('chat-msgs');
+  const d=document.createElement('div');d.className=`cmsg ${role==='user'?'user':'bot'}`;
+  d.innerHTML=role==='bot'?`<div class="cmsg-av">M</div><div class="cmsg-bubble">${text}</div>`:`<div class="cmsg-bubble">${text}</div>`;
+  w.appendChild(d);w.scrollTop=w.scrollHeight;
+}
+function showTyping(){const w=document.getElementById('chat-msgs');const d=document.createElement('div');d.id='typing';d.className='cmsg bot';d.innerHTML=`<div class="cmsg-av">M</div><div class="typing-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;w.appendChild(d);w.scrollTop=w.scrollHeight;}
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+
+function showLeadForm(){
+  const w=document.getElementById('chat-msgs');
+  const intro=document.createElement('div');intro.className='cmsg bot';
+  intro.innerHTML=`<div class="cmsg-av">M</div><div class="cmsg-bubble">Hey! I'm Maya -- your Aligned Wellness guide. Tell me a little about yourself so I can actually be helpful!</div>`;
+  w.appendChild(intro);
+  const fd=document.createElement('div');fd.style.cssText='padding:0 0 4px 31px;';
+  fd.innerHTML=`<div class="lead-form"><input id="lf-name" placeholder="First name *"/><input id="lf-email" type="email" placeholder="Email address *"/><input id="lf-phone" type="tel" placeholder="Phone (optional)"/><div style="font-size:11px;color:#999;font-weight:600;margin:2px 0">I'm interested in...</div><div class="interest-chips"><button class="interest-chip" onclick="selInt(this,'Products')">Products</button><button class="interest-chip" onclick="selInt(this,'Business')">Business</button><button class="interest-chip" onclick="selInt(this,'Both')">Both</button></div><button class="lead-submit" onclick="submitLead()">Start Chatting with Maya -></button><div style="font-size:10px;color:#ccc;text-align:center;margin-top:4px">Private -- never sold or spammed</div></div>`;
+  w.appendChild(fd);w.scrollTop=w.scrollHeight;
+}
+
+function selInt(btn,val){document.querySelectorAll('.interest-chip').forEach(c=>c.classList.remove('active'));btn.classList.add('active');selInterest=val;}
+
+async function submitLead(){
+  const name=document.getElementById('lf-name').value.trim();
+  const email=document.getElementById('lf-email').value.trim();
+  const phone=document.getElementById('lf-phone').value.trim();
+  if(!name){alert('Please enter your first name.');return;}
+  if(!email||!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email.');return;}
+  leadData={name,email,phone,interest:selInterest,timestamp:new Date().toISOString()};
+  try{const s=localStorage.getItem('aw-leads');const ls=s?JSON.parse(s):[];ls.push(leadData);localStorage.setItem('aw-leads',JSON.stringify(ls));}catch(e){}
+  document.getElementById('chat-msgs').innerHTML='';
+  document.getElementById('chat-ibar').style.display='flex';
+  chatStage='chat';showTyping();
+  const ctx=selInterest?` They're interested in: ${selInterest}.`:'';
+  const first=`Hi! I'm ${name}.${ctx}`;
+  convHistory=[{role:'user',content:first}];
+  try{
+    const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:SYS(name),messages:convHistory})});
+    const d=await r.json();
+    const rep=d.content?.map(b=>b.text).join('')||`Hey ${name}! Great to meet you -- what would you like to know first?`;
+    removeTyping();addMsg(rep,'bot');convHistory.push({role:'assistant',content:rep});
+    showOpeners();
+  }catch(e){removeTyping();addMsg(`Hey ${name}! Great to meet you. What would you like to know about Aligned Wellness?`,'bot');}
+}
+
+function showOpeners(){
+  const ops=['Tell me about the $10 membership','Can I earn income?','What products do you have?','Is this legit?'];
+  const w=document.getElementById('chat-msgs');
+  const d=document.createElement('div');d.id='openers';d.className='opener-chips';d.style.padding='0 4px 4px';
+  d.innerHTML=ops.map(o=>`<button class="opener-chip" onclick="quickSend('${o}')">${o}</button>`).join('');
+  w.appendChild(d);w.scrollTop=w.scrollHeight;
+}
+
+function quickSend(t){const o=document.getElementById('openers');if(o)o.remove();sendMsg(t);}
+
+async function sendMsg(override){
+  const inp=document.getElementById('chat-input');
+  const text=override||inp.value.trim();
+  if(!text)return;
+  inp.value='';
+  addMsg(text,'user');
+  convHistory.push({role:'user',content:text});
+  showTyping();
+  try{
+    var sysPrompt = SYS(leadData ? leadData.name : null);
+    var recentHistory = convHistory.slice(-6); var payload = {system: sysPrompt, messages: recentHistory};
+    console.log('Sending to function...');
+    const r = await fetch('/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+    console.log('Response status:', r.status);
+    const d = await r.json();
+    console.log('Response data:', JSON.stringify(d).substring(0, 100));
+    if(d.error){
+      console.error('API error:', d.error);
+      removeTyping();
+      addMsg("I'm having a moment -- please try again!", 'bot');
+      return;
+    }
+    const rep = d.content ? d.content.map(function(b){return b.text||'';}).join('') : "Sorry, try again!";
+    removeTyping();
+    addMsg(rep, 'bot');
+    convHistory.push({role:'assistant', content:rep});
+  }catch(e){
+    console.error('sendMsg error:', e.message);
+    removeTyping();
+    addMsg("Oops, something went wrong! Try again.", 'bot');
+  }
+}
+</script>
+</body>
+</html>
