@@ -576,10 +576,13 @@ function openChat(){document.getElementById('chat-panel').classList.add('open');
 function closeChat(){document.getElementById('chat-panel').classList.remove('open');chatOpen=false;}
 function toggleChat(){chatOpen?closeChat():openChat();}
 
+function linkify(text){
+  return text.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" style="color:#4a7c59;text-decoration:underline;word-break:break-all;">$1</a>');
+}
 function addMsg(text,role){
   const w=document.getElementById('chat-msgs');
   const d=document.createElement('div');d.className=`cmsg ${role==='user'?'user':'bot'}`;
-  d.innerHTML=role==='bot'?`<div class="cmsg-av">M</div><div class="cmsg-bubble">${text}</div>`:`<div class="cmsg-bubble">${text}</div>`;
+  d.innerHTML=role==='bot'?`<div class="cmsg-av">M</div><div class="cmsg-bubble">${linkify(text)}</div>`:`<div class="cmsg-bubble">${text}</div>`;
   w.appendChild(d);w.scrollTop=w.scrollHeight;
 }
 function showTyping(){const w=document.getElementById('chat-msgs');const d=document.createElement('div');d.id='typing';d.className='cmsg bot';d.innerHTML=`<div class="cmsg-av">M</div><div class="typing-wrap"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;w.appendChild(d);w.scrollTop=w.scrollHeight;}
@@ -604,7 +607,13 @@ async function submitLead(){
   if(!name){alert('Please enter your first name.');return;}
   if(!email||!/\S+@\S+\.\S+/.test(email)){alert('Please enter a valid email.');return;}
   leadData={name,email,phone,interest:selInterest,timestamp:new Date().toISOString()};
-  try{const s=localStorage.getItem('aw-leads');const ls=s?JSON.parse(s):[];ls.push(leadData);localStorage.setItem('aw-leads',JSON.stringify(ls));}catch(e){}
+  try{
+    await fetch('/api/lead', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(leadData)
+    });
+  }catch(e){console.log('Lead save error:',e);}
   document.getElementById('chat-msgs').innerHTML='';
   document.getElementById('chat-ibar').style.display='flex';
   chatStage='chat';showTyping();
