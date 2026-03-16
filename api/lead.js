@@ -22,7 +22,7 @@ export default async function handler(req, res) {
           'Authorization': `Bearer ${resendKey}`
         },
         body: JSON.stringify({
-          from: 'Maya <onboarding@resend.dev>',
+          from: 'Maya <hello@alignedwellnessco.space>',
           to: process.env.OWNER_EMAIL || 'hello@alignedwellnessco.space',
           subject: `New Lead: ${name} is interested in ${interest || 'Aligned Wellness'}!`,
           html: `
